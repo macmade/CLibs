@@ -1,0 +1,176 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		050111DF12DCF0C7009B5FF7 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		050111E012DCF0C7009B5FF7 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		050111E312DCF0C7009B5FF7 /* libdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdebug.h; sourceTree = "<group>"; };
+		050111E412DCF0C7009B5FF7 /* libio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libio.h; sourceTree = "<group>"; };
+		050111E512DCF0C7009B5FF7 /* libprogressbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libprogressbar.h; sourceTree = "<group>"; };
+		050111E612DCF0C7009B5FF7 /* libdebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libdebug.c; sourceTree = "<group>"; };
+		050111E712DCF0C7009B5FF7 /* libio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libio.c; sourceTree = "<group>"; };
+		050111E812DCF0C7009B5FF7 /* libprogressbar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libprogressbar.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		050111CF12DCF09C009B5FF7 = {
+			isa = PBXGroup;
+			children = (
+				050111DF12DCF0C7009B5FF7 /* LICENSE.txt */,
+				050111E012DCF0C7009B5FF7 /* Makefile */,
+				050111E112DCF0C7009B5FF7 /* source */,
+			);
+			sourceTree = "<group>";
+		};
+		050111E112DCF0C7009B5FF7 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				050111E212DCF0C7009B5FF7 /* include */,
+				050111E612DCF0C7009B5FF7 /* libdebug.c */,
+				050111E712DCF0C7009B5FF7 /* libio.c */,
+				050111E812DCF0C7009B5FF7 /* libprogressbar.c */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		050111E212DCF0C7009B5FF7 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				050111E312DCF0C7009B5FF7 /* libdebug.h */,
+				050111E412DCF0C7009B5FF7 /* libio.h */,
+				050111E512DCF0C7009B5FF7 /* libprogressbar.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		050111D612DCF09D009B5FF7 /* clibs */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 050111D912DCF09D009B5FF7 /* Build configuration list for PBXLegacyTarget "clibs" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			dependencies = (
+			);
+			name = clibs;
+			passBuildSettingsInEnvironment = 1;
+			productName = clibs;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		050111D112DCF09C009B5FF7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = eosgarden;
+			};
+			buildConfigurationList = 050111D412DCF09C009B5FF7 /* Build configuration list for PBXProject "clibs" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 050111CF12DCF09C009B5FF7;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				050111D612DCF09D009B5FF7 /* clibs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		050111D712DCF09D009B5FF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		050111D812DCF09D009B5FF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		050111DA12DCF09D009B5FF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		050111DB12DCF09D009B5FF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		050111D412DCF09C009B5FF7 /* Build configuration list for PBXProject "clibs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050111D712DCF09D009B5FF7 /* Debug */,
+				050111D812DCF09D009B5FF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		050111D912DCF09D009B5FF7 /* Build configuration list for PBXLegacyTarget "clibs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050111DA12DCF09D009B5FF7 /* Debug */,
+				050111DB12DCF09D009B5FF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 050111D112DCF09C009B5FF7 /* Project object */;
+}
