@@ -162,7 +162,8 @@ bool                fsuid(          struct libio_file * stream );
 bool                fsgid(          struct libio_file * stream );
 
 /* Private functions */
-static void __libio_write_align(  struct libio_file * stream );
+static void __libio_write_align( struct libio_file * stream );
+static void __libio_update_stat( struct libio_file * stream );
 
 
 static void __libio_write_align(  struct libio_file * stream )
@@ -175,6 +176,11 @@ static void __libio_write_align(  struct libio_file * stream )
     stream->bit_count  = 0;
     stream->bit_buffer = 0;
     stream->bit_offset = 0;
+}
+
+static void __libio_update_stat( struct libio_file * stream )
+{
+    stat( stream->filename, &( stream->stat_buf ) );
 }
 
 /*!
@@ -213,7 +219,7 @@ struct libio_file * libio_fopen( const char * filename, const char * mode )
     memset(  &( stream->stat_buf ), 0, sizeof( struct stat ) );
     strcpy(  stream->filename, filename );
     strncpy( stream->mode, mode, 3 );
-    stat(    filename, &( stream->stat_buf ) );
+    __libio_update_stat( stream );
     
     stream->need_init = false;
     stream->bit_buffer = 0;
@@ -244,7 +250,7 @@ struct libio_file * libio_fopen( const char * filename, const char * mode )
 
 /*!
  * Flushes stream stream and returns zero on success or EOF on error.
- * Effect undefined for input stream. fflush(NULL) flushes all output
+ * Effect undefined for input stream. fflush( NULL ) flushes all output
  * streams.
  */
 int libio_fflush( struct libio_file * stream )
@@ -709,13 +715,24 @@ int fgetbits( struct libio_file * stream, unsigned int count )
  */
 int fputbits( struct libio_file * stream, uint64_t bits, unsigned int count )
 {
-    unsigned int i;
-    uint8_t      bit;
+    unsigned long i;
+    unsigned long bytes;
+    uint8_t       bit;
     
     if( stream->writeable == false )
     {
         return -1;
     }
+    
+    bytes  = ( unsigned int )floor( count / 8 );
+    count -= bytes * 8;
+    
+    if( bytes > 0 )
+    {
+        fwrite( &bits, sizeof( uint8_t ), bytes, stream->fp );
+    }
+    
+    bits &= 0xFF;
     
     for( i = 0; i < count; i++ )
     {
@@ -772,6 +789,8 @@ gid_t fgid( struct libio_file * stream )
  */
 size_t fsize( struct libio_file * stream )
 {
+    __libio_update_stat( stream );
+    
     return stream->stat_buf.st_size;
 }
 
