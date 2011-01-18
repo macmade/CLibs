@@ -1,4 +1,4 @@
-$Id: LICENSE.txt 2 2010-11-27 18:44:06Z macmade@eosgarden.com $
+$Id$
 
 Copyright (c) 2010, Jean-David Gadina <macmade@eosgarden.com>
 Distributed under the Boost Software License, Version 1.0.
