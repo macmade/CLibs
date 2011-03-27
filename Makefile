@@ -10,6 +10,7 @@ ARGS_LIBTOOL            = --quiet
 EXT_CODE                = .c
 EXT_HEADERS             = .h
 EXT_OBJECT              = .o
+EXT_ARCHIVE             = .a
 EXT_LIB_OBJECT          = .lo
 EXT_LIB_ARCHIVE         = .la
 EXT_LIB_DYNAMIC         = .dylib
@@ -62,7 +63,7 @@ install: all
 	@echo "    - Installing header files to:      $(DIR_INSTALL_INC)"
 	@sudo cp $(DIR_INC)* $(DIR_INSTALL_INC)
 	@echo "    - Installing static libraries to:  $(DIR_INSTALL_LIB)"
-	@sudo cp $(DIR_BUILD)*$(EXT_LIB_ARCHIVE) $(DIR_INSTALL_LIB)
+	@sudo cp $(DIR_BUILD)*$(EXT_ARCHIVE) $(DIR_INSTALL_LIB)
 	@echo "    - Installing dynamic libraries to: $(DIR_INSTALL_LIB)"
 	@sudo cp $(DIR_BUILD)*$(EXT_LIB_DYNAMIC) $(DIR_INSTALL_LIB)
 	
@@ -80,6 +81,7 @@ $(DIR_BUILD)%$(EXT_LIB_OBJECT): %$(EXT_CODE) %$(EXT_HEADERS)
 $(DIR_BUILD)%$(EXT_LIB_ARCHIVE): %$(EXT_CODE) %$(EXT_HEADERS)
 	@echo "    - Building static library:  "$(subst $(DIR_BUILD),"",$@)
 	@$(LIBTOOL) $(ARGS_LIBTOOL) $(ARGS_LIBTOOL_LA) $(CC) -o $@ -c $(subst $(EXT_LIB_ARCHIVE),$(EXT_LIB_OBJECT),$@) $(_ARGS_CC) $(CFLAGS)
+	@cp $(subst $(DIR_BUILD),$(DIR_BUILD).libs/,$(subst $(EXT_LIB_ARCHIVE),$(EXT_ARCHIVE),$@)) $(subst $(EXT_LIB_ARCHIVE),$(EXT_ARCHIVE),$@)
 
 $(DIR_BUILD)%$(EXT_LIB_DYNAMIC): %$(EXT_OBJECT) %$(EXT_HEADERS)
 	@echo "    - Building dynamic library: "$(subst $(DIR_BUILD),"",$@)
