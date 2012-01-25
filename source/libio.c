@@ -736,7 +736,7 @@ int fputbits( struct libio_file * stream, uint64_t bits, unsigned int count )
     
     for( i = 0; i < count; i++ )
     {
-        bit = bits >> ( ( count - 1 ) - i );
+        bit = ( uint8_t )( ( uint64_t )bits >> ( ( count - 1 ) - i ) );
         
         fputbit( stream, bit );
     }
@@ -791,7 +791,7 @@ size_t fsize( struct libio_file * stream )
 {
     __libio_update_stat( stream );
     
-    return stream->stat_buf.st_size;
+    return ( size_t )( stream->stat_buf.st_size );
 }
 
 /*!

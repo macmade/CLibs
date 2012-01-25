@@ -111,7 +111,7 @@ void libdebug_set_exec_name( char * name );
  * @result      void
  * @discussion  Do NOT call this directly. Please use the DEBUG macro instead!
  */
-void libdebug_debug( char * msg, ... );
+void libdebug_debug( const char * msg, ... );
 
 #ifdef __cplusplus
 }

@@ -55,8 +55,8 @@ typedef struct _libprogressbar_args
 {
     unsigned int   length;
     unsigned int * percent;
-    char         * label;
-    char         * done;
+    const char   * label;
+    const char   * done;
 }
 libprogressbar_args;
 

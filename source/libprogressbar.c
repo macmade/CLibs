@@ -128,7 +128,7 @@ void * __libprogressbar_update_status( void * args )
             printf( ( percent == 100 ) ? "=" : ">" );
         }
         
-        for( i = ( ( ( double )length / 100 ) * percent ); i < length; i++ )
+        for( i = ( unsigned int )( ( ( double )length / 100 ) * percent ); i < length; i++ )
         {
             printf( " " );
         }

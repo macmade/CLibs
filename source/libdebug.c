@@ -53,13 +53,13 @@
 static bool   __libdebug_enabled     = false;
 static char * __libdebug_exec_name   = NULL;
 
-/* Executable name (implementation-defined) */
-char * __progname                    = NULL;
-char * program_invocation_short_name = NULL;
-
 /* Weak symbols for the executable name */
 extern char * __progname                    __attribute__( ( weak ) );
 extern char * program_invocation_short_name __attribute__( ( weak ) );
+
+/* Executable name (implementation-defined) */
+char * __progname                    = NULL;
+char * program_invocation_short_name = NULL;
 
 /*!
  * @function    libdebug_set_exec_name
@@ -99,20 +99,20 @@ bool libdebug_is_enabled( void )
  */
 void libdebug_set_exec_name( char * name )
 {
-    int    i;
+    size_t i;
     size_t length;
     
     __libdebug_exec_name = name;
     length               = strlen( __libdebug_exec_name );
     
     /* Checks the executable path to get only the executable name */
-    for( i = length - 1; i > -1; i-- )
+    for( i = length; i > 0; i-- )
     {
         /* Checks for a slash */
-        if( __libdebug_exec_name[ i ] == '/' )
+        if( __libdebug_exec_name[ i - 1 ] == '/' )
         {
             /* Moves the pointer to the file name */
-            __libdebug_exec_name += i + 1;
+            __libdebug_exec_name += i;
             break;
         }
     }
@@ -126,7 +126,7 @@ void libdebug_set_exec_name( char * name )
  * @result      void
  * @discussion  Do NOT call this directly. Please use the DEBUG macro instead!
  */
-void libdebug_debug( char * msg, ... )
+void libdebug_debug( const char * msg, ... )
 {
     pid_t          pid;
     pthread_t      tid;
@@ -135,7 +135,7 @@ void libdebug_debug( char * msg, ... )
     struct timeval tv;
     va_list        args;
     char           date[ 255 ];
-    char         * exec;
+    const char   * exec;
     
     /* Mac OS X only - Mach port associated to the thread ID */
     #ifdef __MACH__
