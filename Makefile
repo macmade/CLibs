@@ -18,7 +18,7 @@ EXT_LIB_DYNAMIC         = .dylib
 DIR_BUILD               = build/
 DIR_SRC                 = source/
 DIR_INC                 = $(DIR_SRC)include/
-DIR_INSTALL             = /usr/local/eosgarden-clibs/
+DIR_INSTALL             = /usr/local/xs-clibs/
 DIR_INSTALL_LIB         = $(DIR_INSTALL)lib/
 DIR_INSTALL_INC         = $(DIR_INSTALL)include/
 
@@ -89,6 +89,6 @@ $(DIR_BUILD)%$(EXT_LIB_DYNAMIC): %$(EXT_OBJECT) %$(EXT_HEADERS)
 	
 __copyright:
 	@echo "----------------------------------------------------------------------"
-	@echo "Copyright (c) 2011, Jean-David Gadina <macmade@eosgarden.com>"
+	@echo "Copyright (c) 2011, Jean-David Gadina - www.xs-labs.com"
 	@echo "Distributed under the Boost Software License, Version 1.0."
 	@echo "----------------------------------------------------------------------"

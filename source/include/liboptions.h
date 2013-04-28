@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, Jean-David Gadina - www.xs-labs.com
+ * Copyright (c) 2011, Jean-David Gadina - www.xs-labs.com
  * Distributed under the Boost Software License, Version 1.0.
  * 
  * Boost Software License - Version 1.0 - August 17th, 2003
@@ -26,43 +26,58 @@
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  ******************************************************************************/
-
+ 
 /* $Id$ */
 
 /*!
- * @header      libclog.h
+ * @header      liboptions.h
  * @copyright   (c) 2011 - Jean-David Gadina - www.xs-labs.com
- * @abstract    C log functions
+ * @abstract    ...
  */
 
-#ifndef _LIB_CLOG_H_
-#define _LIB_CLOG_H_
+#ifndef _HEADER_H
+#define _HEADER_H
 #pragma once
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/* Definition of the boolean datatype if not enabled */
-#ifndef __bool_true_false_are_defined
-    #define bool                            _Bool
-    #define true                            1
-    #define false                           0
-    #define __bool_true_false_are_defined   1
-#endif
-
-void CLog( char * fmt, ... );
-void CLogEmergency( char * fmt, ... );
-void CLogAlert( char * fmt, ... );
-void CLogCritical( char * fmt, ... );
-void CLogError( char * fmt, ... );
-void CLogWarning( char * fmt, ... );
-void CLogNotice( char * fmt, ... );
-void CLogInfo( char * fmt, ... );
-void CLogDebug( char * fmt, ... );
-
+    
+    /* Definition of the boolean datatype if not enabled */
+    #ifndef __bool_true_false_are_defined
+        #define bool                            _Bool
+        #define true                            1
+        #define false                           0
+        #define __bool_true_false_are_defined   1
+    #endif
+    
+    typedef enum
+    {
+        liboption_bool   = 0x00,
+        liboption_int    = 0x01,
+        liboption_uint   = 0x02,
+        liboption_string = 0x03
+    }
+    liboption_type;
+    
+    typedef struct _liboption_arg
+    {
+        liboption_type type;
+        const char     letter;
+        const char   * name;
+        const char   * description;
+        union
+        {
+            bool   boolean;
+            int    integer;
+            char * string;
+        }
+        value;
+    }
+    liboption_arg;
+    
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _LIB_CLOG_H_ */
+#endif /* _HEADER_H */
