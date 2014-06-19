@@ -717,6 +717,7 @@ int fputbits( struct libio_file * stream, uint64_t bits, unsigned int count )
 {
     unsigned long i;
     unsigned long bytes;
+    unsigned long bytesF;
     uint8_t       bit;
     
     if( stream->writeable == false )
@@ -724,7 +725,8 @@ int fputbits( struct libio_file * stream, uint64_t bits, unsigned int count )
         return -1;
     }
     
-    bytes  = ( unsigned int )floor( count / 8 );
+    bytesF = floor( count / 8 );
+    bytes  = ( unsigned int )bytesF;
     count -= bytes * 8;
     
     if( bytes > 0 )

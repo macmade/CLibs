@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: clibs.xcodeproj
+xcode_scheme: clibs
